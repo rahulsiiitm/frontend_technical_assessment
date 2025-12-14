@@ -1,13 +1,44 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --vs-blue: #5182FF;       /* VectorShift Primary Blue */
+  --vs-purple: #430B8A;     /* VectorShift Deep Purple */
+  --vs-light-blue: #C2D3FF; /* Accent Background */
+  --vs-text: #111827;       /* Dark Grey for text */
+  --vs-border: #E5E7EB;     /* Light border */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f9fafb; /* Very clean light grey background */
+  color: var(--vs-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Global Input Styling */
+input, select, textarea {
+  font-family: 'Inter', sans-serif;
+  border: 1px solid var(--vs-border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  outline: none;
+  font-size: 13px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.2s;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--vs-blue);
+  box-shadow: 0 0 0 2px var(--vs-light-blue);
+}
+
+/* React Flow Grid Customization */
+.react-flow__background {
+  background-color: #f9fafb;
+}
+.react-flow__controls-button {
+  border-radius: 8px !important;
+  border: 1px solid var(--vs-border) !important;
 }
