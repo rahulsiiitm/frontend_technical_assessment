@@ -1,25 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
 :root {
-  --vs-blue: #5182FF;       /* VectorShift Primary Blue */
-  --vs-purple: #430B8A;     /* VectorShift Deep Purple */
-  --vs-light-blue: #C2D3FF; /* Accent Background */
-  --vs-text: #111827;       /* Dark Grey for text */
-  --vs-border: #E5E7EB;     /* Light border */
+  --vs-bg: #121212;         /* Main Dark Background */
+  --vs-node-bg: #1E1E1E;    /* Node Background (Dark Grey) */
+  --vs-border: #333333;     /* Dark Borders */
+  --vs-text: #E5E7EB;       /* Light Grey Text */
+  --vs-blue: #5182FF;       /* VectorShift Blue (Accent) */
+  --vs-purple: #430B8A;     /* VectorShift Purple */
 }
 
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background-color: #f9fafb; /* Very clean light grey background */
+  background-color: var(--vs-bg);
   color: var(--vs-text);
   -webkit-font-smoothing: antialiased;
 }
 
-/* Global Input Styling */
+/* Dark Mode Inputs */
 input, select, textarea {
   font-family: 'Inter', sans-serif;
+  background-color: #2D2D2D;
   border: 1px solid var(--vs-border);
+  color: #fff;
   border-radius: 6px;
   padding: 6px 10px;
   outline: none;
@@ -31,14 +34,21 @@ input, select, textarea {
 
 input:focus, select:focus, textarea:focus {
   border-color: var(--vs-blue);
-  box-shadow: 0 0 0 2px var(--vs-light-blue);
+  background-color: #333;
+  box-shadow: 0 0 0 2px rgba(81, 130, 255, 0.2);
 }
 
-/* React Flow Grid Customization */
-.react-flow__background {
-  background-color: #f9fafb;
+/* Customize React Flow Grid dots to be visible on dark */
+.react-flow__background circle {
+  fill: #555;
 }
+
+/* React Flow Controls (Zoom buttons) */
 .react-flow__controls-button {
-  border-radius: 8px !important;
-  border: 1px solid var(--vs-border) !important;
+  background: #2D2D2D !important;
+  border-bottom: 1px solid #444 !important;
+  fill: white !important;
+}
+.react-flow__controls-button:hover {
+  background: #444 !important;
 }

@@ -5,17 +5,17 @@ export const BaseNode = ({ id, data, children, handles = [], style = {}, label }
     <div style={{ 
       width: 240, 
       height: 'auto',
-      background: '#fff',
-      borderRadius: '12px', // Modern soft corners
-      border: '1px solid var(--vs-border)',
-      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+      background: '#1E1E1E',   // Dark card background
+      borderRadius: '10px',
+      border: '1px solid #444', // Subtle border
+      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
       display: 'flex',
       flexDirection: 'column',
       overflow: 'hidden',
-      transition: 'all 0.2s',
+      color: '#fff',           // White text
       ...style
     }}>
-      {/* Handles with VectorShift Blue */}
+      {/* Handles */}
       {handles.map((handle) => (
         <Handle
           key={handle.id}
@@ -24,32 +24,30 @@ export const BaseNode = ({ id, data, children, handles = [], style = {}, label }
           id={`${id}-${handle.id}`}
           style={{
             ...handle.style,
-            width: 10, height: 10, 
-            background: '#fff', 
-            border: '2px solid #5182FF' // Blue border, white center (very clean)
+            width: 8, height: 8, 
+            background: '#5182FF', // Glowing Blue Dot
+            border: '2px solid #1E1E1E' // Dark border to make it pop
           }}
         />
       ))}
 
-      {/* Header with Gradient */}
+      {/* Header */}
       <div style={{ 
-        padding: '10px 14px', 
-        // Subtle gradient background
-        background: 'linear-gradient(to right, #f8fafc, #eff6ff)', 
-        borderBottom: '1px solid #e2e8f0',
+        padding: '8px 12px', 
+        // Dark Gradient for header
+        background: 'linear-gradient(to right, #2a2a2a, #1a1a1a)', 
+        borderBottom: '1px solid #333',
         fontWeight: '600',
         fontSize: '14px',
-        color: '#430B8A', // Deep Purple text for headers
+        color: '#C2D3FF', // Light Periwinkle Text for contrast
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between'
+        alignItems: 'center'
       }}>
-        <span>{label}</span>
-        {/* Optional: Add a tiny status dot or icon here */}
+        {label}
       </div>
 
       {/* Body */}
-      <div style={{ padding: '14px', fontSize: '13px', color: '#374151' }}>
+      <div style={{ padding: '12px', fontSize: '13px' }}>
         {children}
       </div>
     </div>

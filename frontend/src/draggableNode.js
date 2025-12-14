@@ -18,25 +18,24 @@ export const DraggableNode = ({ type, label }) => {
           display: 'flex', 
           alignItems: 'center', 
           borderRadius: '8px',
-          backgroundColor: '#fff', 
-          border: '1px solid #E5E7EB',
-          color: '#374151',
+          backgroundColor: '#2D2D2D', // Dark Grey Chip
+          border: '1px solid #444',
+          color: '#E5E7EB',           // Light text
           justifyContent: 'center', 
           flexDirection: 'column',
           marginBottom: '10px',
           transition: 'all 0.2s',
           fontSize: '13px',
           fontWeight: '500',
-          boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
+          boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
         }}
-        // Add hover effect via simple inline logic or CSS class
         onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = '#5182FF';
+            e.currentTarget.style.borderColor = '#5182FF'; // Glow Blue on hover
             e.currentTarget.style.color = '#5182FF';
         }}
         onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = '#E5E7EB';
-            e.currentTarget.style.color = '#374151';
+            e.currentTarget.style.borderColor = '#444';
+            e.currentTarget.style.color = '#E5E7EB';
         }}
         draggable
       >
