@@ -8,6 +8,11 @@ import { InputNode } from './nodes/inputNode';
 import { LLMNode } from './nodes/llmNode';
 import { OutputNode } from './nodes/outputNode';
 import { TextNode } from './nodes/textNode';
+import { TransformNode } from './nodes/transformNode';
+import { FilterNode } from './nodes/filterNode';
+import { NoteNode } from './nodes/noteNode';
+import { DBNode } from './nodes/dbNode';
+import { APINode } from './nodes/apiNode';
 
 import 'reactflow/dist/style.css';
 
@@ -20,6 +25,11 @@ const nodeTypes = {
   llm: LLMNode,
   customOutput: OutputNode,
   text: TextNode,
+  transform: TransformNode,
+  filter: FilterNode,
+  note: NoteNode,
+  database: DBNode,
+  api: APINode,
 };
 
 const selector = (state) => ({
@@ -89,28 +99,35 @@ export const PipelineUI = () => {
   }, []);
 
   return (
-    <>
-      {/* FIXED: width changed from '100wv' to '100vw' */}
-      <div ref={reactFlowWrapper} style={{ width: '100%', height: '100%' }}>
-        <ReactFlow
-          nodes={nodes}
-          edges={edges}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          onConnect={onConnect}
-          onDrop={onDrop}
-          onDragOver={onDragOver}
-          onInit={setReactFlowInstance}
-          nodeTypes={nodeTypes}
-          proOptions={proOptions}
-          snapGrid={[gridSize, gridSize]}
-          connectionLineType='smoothstep'
-        >
-          <Background color="#aaa" gap={gridSize} />
-          <Controls />
-          <MiniMap />
-        </ReactFlow>
-      </div>
-    </>
-  )
+        <div ref={reactFlowWrapper} style={{width: '100%', height: '100%'}}>
+            <ReactFlow
+                nodes={nodes}
+                edges={edges}
+                onNodesChange={onNodesChange}
+                onEdgesChange={onEdgesChange}
+                onConnect={onConnect}
+                onDrop={onDrop}
+                onDragOver={onDragOver}
+                onInit={setReactFlowInstance}
+                nodeTypes={nodeTypes}
+                proOptions={proOptions}
+                snapGrid={[gridSize, gridSize]}
+                connectionLineType='smoothstep'
+            >
+                {/* 1. Dark Dots for Background */}
+                <Background color="#555" gap={gridSize} />
+                
+                {/* 2. Styled Controls */}
+                <Controls style={{ fill: '#fff', backgroundColor: '#333', borderColor: '#555' }} />
+                
+                {/* 3. Dark MiniMap */}
+                <MiniMap 
+                    nodeStrokeColor={(n) => '#5182FF'}
+                    nodeColor={(n) => '#1E1E1E'}
+                    maskColor="rgba(0, 0, 0, 0.7)"
+                    style={{ backgroundColor: '#121212', border: '1px solid #333' }}
+                />
+            </ReactFlow>
+        </div>
+    )
 }
