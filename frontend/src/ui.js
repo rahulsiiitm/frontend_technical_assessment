@@ -28,7 +28,7 @@ const nodeTypes = {
   transform: TransformNode,
   filter: FilterNode,
   note: NoteNode,
-  database: DBNode,
+  db: DBNode,  // Changed from 'database' to 'db'
   api: APINode,
 };
 

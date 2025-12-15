@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
+import { MdTransform } from 'react-icons/md';
 
 export const TransformNode = ({ id, data }) => {
   const [func, setFunc] = useState('uppercase');
   return (
-    <BaseNode id={id} data={data} label="Transform" handles={[
+    <BaseNode id={id} data={data} label="Transform" icon={MdTransform} handles={[
         { type: 'target', position: Position.Left, id: 'in' },
         { type: 'source', position: Position.Right, id: 'out' }
     ]}>
@@ -19,4 +20,4 @@ export const TransformNode = ({ id, data }) => {
       </label>
     </BaseNode>
   );
-};
+}
