@@ -1,54 +1,82 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
 :root {
-  --vs-bg: #121212;         /* Main Dark Background */
-  --vs-node-bg: #1E1E1E;    /* Node Background (Dark Grey) */
-  --vs-border: #333333;     /* Dark Borders */
-  --vs-text: #E5E7EB;       /* Light Grey Text */
-  --vs-blue: #5182FF;       /* VectorShift Blue (Accent) */
-  --vs-purple: #430B8A;     /* VectorShift Purple */
+  --vs-primary: #7c3aed;      /* Deep Purple */
+  --vs-blue: #2563eb;         /* Electric Blue */
+  --vs-text: #F3F4F6;
+  --vs-text-dim: #9CA3AF;
+  --vs-glass-border: rgba(255, 255, 255, 0.08);
 }
 
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
-  background-color: var(--vs-bg);
+  font-family: 'Montserrat', sans-serif; /* Global Font */
+  background-color: #020410; /* Deepest Void Black */
   color: var(--vs-text);
+  overflow: hidden; 
   -webkit-font-smoothing: antialiased;
 }
 
-/* Dark Mode Inputs */
+/* THE NEBULA BACKGROUND GLOW */
+body::before {
+  content: '';
+  position: absolute;
+  width: 140vw;
+  height: 140vw;
+  top: -50%;
+  left: -20%;
+  background: radial-gradient(circle, rgba(82, 7, 212, 0.499) 0%, rgba(0,0,0,0) 60%);
+  filter: blur(100px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* INPUTS: Glass Pills */
 input, select, textarea {
-  font-family: 'Inter', sans-serif;
-  background-color: #2D2D2D;
-  border: 1px solid var(--vs-border);
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--vs-glass-border);
   color: #fff;
-  border-radius: 6px;
-  padding: 6px 10px;
-  outline: none;
-  font-size: 13px;
+  border-radius: 12px; /* Rounded Pills */
+  padding: 10px 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
   width: 100%;
   box-sizing: border-box;
   transition: all 0.2s;
+  margin-top: 6px;
 }
 
 input:focus, select:focus, textarea:focus {
-  border-color: var(--vs-blue);
-  background-color: #333;
+  border-color: #5182FF;
+  background-color: rgba(255, 255, 255, 0.07);
   box-shadow: 0 0 0 2px rgba(81, 130, 255, 0.2);
+  outline: none;
 }
 
-/* Customize React Flow Grid dots to be visible on dark */
+/* REACT FLOW OVERRIDES */
 .react-flow__background circle {
-  fill: #555;
+  fill: #fff;
+  opacity: 0.15; /* Very subtle stars */
 }
 
-/* React Flow Controls (Zoom buttons) */
-.react-flow__controls-button {
-  background: #2D2D2D !important;
-  border-bottom: 1px solid #444 !important;
-  fill: white !important;
+/* NODE OVERRIDES */
+.react-flow__node {
+  border-radius: 16px;
+  border: none !important; 
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  
+  /* CRITICAL FIX: Only animate box-shadow. NEVER animate transform. */
+  transition: box-shadow 0.2s ease-in-out; 
 }
-.react-flow__controls-button:hover {
-  background: #444 !important;
+
+.react-flow__node:hover {
+  /* Removed translateY(-2px) to prevent layout jumping */
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.7);
+  z-index: 100;
 }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }

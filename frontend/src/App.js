@@ -4,40 +4,62 @@ import { SubmitButton } from './submit';
 
 function App() {
   return (
-    <div style={{ width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column', background: '#121212' }}>
+    <div style={{ width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column' }}>
       
-      {/* Top Bar - Dark */}
+      {/* GLASS HEADER */}
       <div style={{ 
-          height: '50px', 
+          height: '70px', 
           display: 'flex', 
           alignItems: 'center', 
-          padding: '0 20px', 
-          background: '#18181B', // Slightly lighter dark
-          borderBottom: '1px solid #333', 
-          justifyContent: 'space-between' 
+          justifyContent: 'space-between',
+          padding: '0 30px', 
+          zIndex: 10,
+          // Glass effect
+          background: 'rgba(0, 0, 0, 0.3)', 
+          backdropFilter: 'blur(10px)',
+          borderBottom: '1px solid rgba(255,255,255,0.05)'
       }}>
-        <h3 style={{ margin: 0, color: '#C2D3FF', fontWeight: 600 }}>Pipeline Builder</h3>
-        <SubmitButton />
-      </div>
-
-      {/* Main Workspace */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'row' }}>
         
-        {/* Left Sidebar - Dark */}
-        <div style={{ 
-            width: '250px', 
-            background: '#18181B', 
-            borderRight: '1px solid #333' 
-        }}>
-          <PipelineToolbar />
+        {/* Logo Section */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+             {/* The "VS" Gradient Box */}
+             <div style={{ 
+                 width: 32, height: 32, 
+                 background: 'linear-gradient(135deg, #7c3aed 0%, #2563eb 100%)', 
+                 borderRadius: '6px',
+                 display: 'flex', alignItems: 'center', justifyContent: 'center',
+                 color: '#fff', fontWeight: 'bold', fontSize: '14px'
+             }}>VS</div>
+             
+             <div>
+                 <h3 style={{ margin: 0, color: '#fff', fontSize: '16px', fontWeight: '600' }}>VectorShift</h3>
+                 <span style={{ fontSize: '11px', color: '#9CA3AF' }}>Pipeline Automation</span>
+             </div>
         </div>
 
-        {/* Canvas Area */}
-        <div style={{ flex: 1 }}>
-          <PipelineUI />
+        {/* Right Actions */}
+        <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
+            <span style={{ fontSize: '13px', color: '#9CA3AF', cursor: 'pointer' }}>Help</span>
+            <SubmitButton />
         </div>
-      
       </div>
+
+      {/* Main Workspace - Transparent to show the body's nebula glow */}
+      <div style={{ flex: 1, position: 'relative' }}>
+          <PipelineUI />
+      </div>
+
+              {/* Toolbar in the middle */}
+        <div style={{ 
+            background: 'rgba(255,255,255,0.05)', 
+            padding: '6px 12px', 
+            borderRadius: '12px', 
+            border: '1px solid rgba(255,255,255,0.05)' ,
+            margin: '20px auto',
+        }}>
+            <PipelineToolbar />
+        </div>
+
     </div>
   );
 }

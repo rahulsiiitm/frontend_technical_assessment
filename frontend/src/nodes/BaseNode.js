@@ -1,26 +1,29 @@
 // src/nodes/BaseNode.js
 import { Handle } from 'reactflow';
-import { useStore } from '../store'; // Import the store to access removeNode
+import { useStore } from '../store';
 
 export const BaseNode = ({ id, data, children, handles = [], style = {}, label, icon: Icon }) => {
-  // Grab the removeNode function from the store
   const removeNode = useStore((state) => state.removeNode);
 
   return (
     <div style={{
-      width: 240,
-      height: 'auto',
-      background: '#1E1E1E',
-      borderRadius: '10px',
-      border: '1px solid #444',
-      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+      width: 200, 
+      background: '#18181B', 
+      borderRadius: '16px', 
+      border: 'none',
+      boxShadow: '0 8px 16px -4px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.05)',
+      
       display: 'flex',
       flexDirection: 'column',
+      fontFamily: '"Montserrat", sans-serif',
       overflow: 'hidden',
-      transition: 'all 0.2s',
+      
+      // FIX: specific transitions only. No 'all', no 'transform'.
+      transition: 'box-shadow 0.2s, background-color 0.2s',
       ...style
     }}>
-      {/* Dynamic Handles */}
+      
+      {/* HANDLES */}
       {handles.map((handle) => (
         <Handle
           key={handle.id}
@@ -31,52 +34,72 @@ export const BaseNode = ({ id, data, children, handles = [], style = {}, label, 
             ...handle.style,
             width: 8, height: 8,
             background: '#5182FF',
-            border: '2px solid #1E1E1E'
+            border: '2px solid #18181B',
+            boxShadow: '0 0 0 1px rgba(81, 130, 255, 0.3)',
+            zIndex: 10,
           }}
         />
       ))}
 
-      {/* Styled Header with Icon and Close Button */}
+      {/* HEADER */}
       <div style={{
-        padding: '8px 12px',
-        background: 'linear-gradient(to right, #2a2a2a, #1a1a1a)',
-        borderBottom: '1px solid #333',
-        fontWeight: '600',
-        fontSize: '14px',
-        color: '#C2D3FF',
+        padding: '10px 14px 8px',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between', // Push the X button to the right
+        justifyContent: 'space-between',
       }}>
-        {/* Left Side: Icon + Label */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          {Icon && <Icon size={16} color="#5182FF" />}
-          <span>{label}</span>
+          {Icon && (
+            <div style={{ 
+              color: '#5182FF', 
+              background: 'rgba(81, 130, 255, 0.1)', 
+              width: '24px', height: '24px', 
+              borderRadius: '6px', 
+              display: 'flex', alignItems: 'center', justifyContent: 'center'
+            }}>
+              <Icon size={14} />
+            </div>
+          )}
+          
+          <span style={{ 
+            fontWeight: '600', 
+            fontSize: '12px', 
+            color: '#F3F4F6', 
+            letterSpacing: '0.2px' 
+          }}>
+            {label}
+          </span>
         </div>
 
-        {/* Right Side: Remove Button */}
         <button
           onClick={() => removeNode(id)}
           style={{
             background: 'transparent',
             border: 'none',
-            color: '#a2adc4ff',
+            color: '#52525B',
             cursor: 'pointer',
             fontSize: '16px',
-            padding: '0 4px',
-            lineHeight: 1,
-            transition: 'color 0.2s',
+            padding: '2px',
+            borderRadius: '50%',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            transition: 'color 0.2s'
           }}
-          onMouseEnter={(e) => e.target.style.color = '#ef4444'} // Turn red on hover
-          onMouseLeave={(e) => e.target.style.color = '#a2adc4ff'}
-          title="Remove Node"
+          onMouseEnter={(e) => e.target.style.color = '#EF4444'}
+          onMouseLeave={(e) => e.target.style.color = '#52525B'}
         >
           ✕
         </button>
       </div>
 
-      {/* Body */}
-      <div style={{ padding: '12px', fontSize: '13px', color: '#E5E7EB' }}>
+      {/* BODY */}
+      <div style={{ 
+        padding: '12px 14px 16px', 
+        fontSize: '11px', 
+        color: '#D1D5DB', 
+        display: 'flex', 
+        flexDirection: 'column', 
+        gap: '8px' 
+      }}>
         {children}
       </div>
     </div>
