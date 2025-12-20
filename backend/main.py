@@ -27,7 +27,6 @@ def parse_pipeline(pipeline: PipelineData):
     num_nodes = len(pipeline.nodes)
     num_edges = len(pipeline.edges)
     
-    # Check if the pipeline is a DAG (Directed Acyclic Graph)
     is_dag = check_is_dag(pipeline.nodes, pipeline.edges)
     
     return {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
-import { MdInput } from 'react-icons/md'; 
+import { MdInput } from 'react-icons/md';
 
 export const InputNode = ({ id, data }) => {
   const [currName, setCurrName] = useState(data?.inputName || id.replace('customInput-', 'input_'));
@@ -9,11 +9,11 @@ export const InputNode = ({ id, data }) => {
 
   return (
     <BaseNode id={id} data={data} label="Input" icon={MdInput} handles={[{ type: 'source', position: Position.Right, id: 'value' }]}>
-       <label style={{display: 'block', marginBottom: '8px'}}>
+      <label style={{ display: 'block', marginBottom: '8px' }}>
         Name:
         <input type="text" value={currName} onChange={(e) => setCurrName(e.target.value)} />
       </label>
-      <label style={{display: 'block'}}>
+      <label style={{ display: 'block' }}>
         Type:
         <select value={inputType} onChange={(e) => setInputType(e.target.value)}>
           <option value="Text">Text</option>

@@ -7,22 +7,20 @@ export const BaseNode = ({ id, data, children, handles = [], style = {}, label, 
 
   return (
     <div style={{
-      width: 200, 
-      background: '#18181B', 
-      borderRadius: '16px', 
+      width: 200,
+      background: '#18181B',
+      borderRadius: '16px',
       border: 'none',
       boxShadow: '0 8px 16px -4px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.05)',
-      
+
       display: 'flex',
       flexDirection: 'column',
       fontFamily: '"Montserrat", sans-serif',
       overflow: 'hidden',
-      
-      // FIX: specific transitions only. No 'all', no 'transform'.
       transition: 'box-shadow 0.2s, background-color 0.2s',
       ...style
     }}>
-      
+
       {/* HANDLES */}
       {handles.map((handle) => (
         <Handle
@@ -50,22 +48,22 @@ export const BaseNode = ({ id, data, children, handles = [], style = {}, label, 
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           {Icon && (
-            <div style={{ 
-              color: '#5182FF', 
-              background: 'rgba(81, 130, 255, 0.1)', 
-              width: '24px', height: '24px', 
-              borderRadius: '6px', 
+            <div style={{
+              color: '#5182FF',
+              background: 'rgba(81, 130, 255, 0.1)',
+              width: '24px', height: '24px',
+              borderRadius: '6px',
               display: 'flex', alignItems: 'center', justifyContent: 'center'
             }}>
               <Icon size={14} />
             </div>
           )}
-          
-          <span style={{ 
-            fontWeight: '600', 
-            fontSize: '12px', 
-            color: '#F3F4F6', 
-            letterSpacing: '0.2px' 
+
+          <span style={{
+            fontWeight: '600',
+            fontSize: '12px',
+            color: '#F3F4F6',
+            letterSpacing: '0.2px'
           }}>
             {label}
           </span>
@@ -92,13 +90,13 @@ export const BaseNode = ({ id, data, children, handles = [], style = {}, label, 
       </div>
 
       {/* BODY */}
-      <div style={{ 
-        padding: '12px 14px 16px', 
-        fontSize: '11px', 
-        color: '#D1D5DB', 
-        display: 'flex', 
-        flexDirection: 'column', 
-        gap: '8px' 
+      <div style={{
+        padding: '12px 14px 16px',
+        fontSize: '11px',
+        color: '#D1D5DB',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '8px'
       }}>
         {children}
       </div>

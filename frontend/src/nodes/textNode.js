@@ -8,7 +8,7 @@ export const TextNode = ({ id, data }) => {
   const [rawText, setRawText] = useState(data?.text || '{{input}}');
   const [handles, setHandles] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
-  
+
   // State for Dropdown & Cursor
   const [showDropdown, setShowDropdown] = useState(false);
   const [options, setOptions] = useState([]);
@@ -126,9 +126,9 @@ export const TextNode = ({ id, data }) => {
       const newText = `${prefix}{{${optionLabel}}}${textAfterCursor}`;
       setRawText(newText);
       setShowDropdown(false);
-      
+
       setTimeout(() => {
-        if(textareaRef.current) textareaRef.current.focus();
+        if (textareaRef.current) textareaRef.current.focus();
       }, 0);
     }
   };
@@ -167,11 +167,11 @@ export const TextNode = ({ id, data }) => {
       }
       parts.push(
         <span key={`var-${key++}`} style={{
-            color: '#5182FF', 
-            background: 'rgba(81, 130, 255, 0.1)', 
-            padding: '0 4px', 
-            borderRadius: '4px',
-            fontWeight: 500
+          color: '#5182FF',
+          background: 'rgba(81, 130, 255, 0.1)',
+          padding: '0 4px',
+          borderRadius: '4px',
+          fontWeight: 500
         }}>
           {match[1]}
         </span>
@@ -185,23 +185,23 @@ export const TextNode = ({ id, data }) => {
   };
 
   return (
-    <BaseNode 
-      id={id} data={data} label="Text" icon={MdTextFields} handles={handles} 
+    <BaseNode
+      id={id} data={data} label="Text" icon={MdTextFields} handles={handles}
       style={{ height: 'auto', minHeight: '100px', width: '250px', overflow: 'visible' }}
     >
       <div ref={wrapperRef} style={{ position: 'relative' }}>
         <label style={{ display: 'block', fontSize: '11px', color: '#9CA3AF', marginBottom: '8px', fontWeight: '500' }}>
           Text with variables
         </label>
-      
+
         {isEditing ? (
           <textarea
             ref={textareaRef}
             className="nodrag"
             value={rawText}
             onChange={handleInputChange}
-            onSelect={handleCursorSelect} 
-            onClick={handleCursorSelect}  
+            onSelect={handleCursorSelect}
+            onClick={handleCursorSelect}
             style={{
               width: '100%',
               minHeight: '60px',
@@ -212,8 +212,8 @@ export const TextNode = ({ id, data }) => {
             }}
           />
         ) : (
-          <div 
-            onClick={() => setIsEditing(true)} 
+          <div
+            onClick={() => setIsEditing(true)}
             style={{
               // Match global input styles for consistency
               backgroundColor: 'rgba(255, 255, 255, 0.03)',
@@ -241,7 +241,7 @@ export const TextNode = ({ id, data }) => {
             maxHeight: '150px', overflowY: 'auto'
           }}>
             {options.map((opt) => (
-              <div 
+              <div
                 key={opt.id}
                 onMouseDown={(e) => { e.stopPropagation(); selectOption(opt.label); }}
                 style={{

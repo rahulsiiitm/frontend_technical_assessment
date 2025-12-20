@@ -1,6 +1,5 @@
-// src/submit.js
 import { useState } from 'react';
-import { createPortal } from 'react-dom'; // <--- IMPORT THIS
+import { createPortal } from 'react-dom';
 import { useStore } from './store';
 import { shallow } from 'zustand/shallow';
 import { MdCheckCircle, MdError, MdClose } from 'react-icons/md';
@@ -35,22 +34,17 @@ export const SubmitButton = () => {
         }
     };
 
-    // The modal content we want to teleport to the body
     const modalContent = (
         <div
+            className="animate-fade-in"
             style={{
                 position: 'fixed',
-                top: 0,
-                left: 0,
-                width: '100vw', // Force full viewport width
-                height: '100vh', // Force full viewport height
+                top: 0, left: 0,
+                width: '100vw', height: '100vh',
                 background: 'rgba(0, 0, 0, 0.7)',
                 backdropFilter: 'blur(8px)',
-                zIndex: 9999, // Ensure it's on top of everything
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                animation: 'fadeIn 0.2s ease-out',
+                zIndex: 9999,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
                 fontFamily: '"Montserrat", sans-serif'
             }}
             onClick={() => setModalOpen(false)}
@@ -59,7 +53,7 @@ export const SubmitButton = () => {
                 onClick={(e) => e.stopPropagation()}
                 style={{
                     width: '340px',
-                    background: '#14161F', // Matte Black Card
+                    background: '#14161F',
                     border: '1px solid #272A36',
                     borderRadius: '16px',
                     padding: '24px',
@@ -79,7 +73,6 @@ export const SubmitButton = () => {
                     <MdClose size={20} />
                 </button>
 
-                {/* MODAL BODY */}
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '20px' }}>
                     <div style={{
                         width: '64px', height: '64px', borderRadius: '50%',
@@ -143,28 +136,21 @@ export const SubmitButton = () => {
                     boxShadow: '0 4px 14px 0 rgba(81, 130, 255, 0.4)',
                     transition: 'all 0.2s',
                     opacity: isLoading ? 0.7 : 1,
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px'
+                    display: 'flex', alignItems: 'center', gap: '8px'
                 }}
                 onMouseEnter={(e) => !isLoading && (e.currentTarget.style.transform = 'translateY(-2px)')}
                 onMouseLeave={(e) => !isLoading && (e.currentTarget.style.transform = 'translateY(0)')}
             >
                 {isLoading ? (
-                    <div style={{
+                    <div className="animate-spin" style={{ // Uses global CSS now
                         width: '16px', height: '16px', border: '2px solid #fff',
                         borderTop: '2px solid transparent', borderRadius: '50%',
-                        animation: 'spin 1s linear infinite'
                     }} />
                 ) : (
                     'Submit Pipeline'
                 )}
             </button>
-            
-            <style>{`@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }`}</style>
-            <style>{`@keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }`}</style>
 
-            {/* USE CREATE PORTAL TO TELEPORT MODAL TO BODY */}
             {modalOpen && createPortal(modalContent, document.body)}
         </div>
     );

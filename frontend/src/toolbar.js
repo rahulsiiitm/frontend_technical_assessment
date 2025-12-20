@@ -6,7 +6,7 @@ import { MdStickyNote2, MdApi, MdOutput } from 'react-icons/md';
 
 export const PipelineToolbar = () => {
     return (
-        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: '10px' }}>
             <DraggableNode type='customInput' label='Input' icon={<BsInputCursorText />} />
             <DraggableNode type='llm' label='LLM' icon={<BsCpu />} />
             <DraggableNode type='customOutput' label='Output' icon={<MdOutput />} />

@@ -19,7 +19,6 @@ import 'reactflow/dist/style.css';
 const gridSize = 20;
 const proOptions = { hideAttribution: true };
 
-// Define the node types available in the flow
 const nodeTypes = {
   customInput: InputNode,
   llm: LLMNode,
@@ -116,7 +115,7 @@ export const PipelineUI = () => {
         connectionLineType='smoothstep'
       >
         <Background
-          color="#272A36" // Subtle grey dots
+          color="#0033ffff"
           gap={20}
           size={1.5}
           variant="dots"

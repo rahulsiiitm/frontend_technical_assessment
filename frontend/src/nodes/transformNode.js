@@ -7,8 +7,8 @@ export const TransformNode = ({ id, data }) => {
   const [func, setFunc] = useState('uppercase');
   return (
     <BaseNode id={id} data={data} label="Transform" icon={MdTransform} handles={[
-        { type: 'target', position: Position.Left, id: 'in' },
-        { type: 'source', position: Position.Right, id: 'out' }
+      { type: 'target', position: Position.Left, id: 'in' },
+      { type: 'source', position: Position.Right, id: 'out' }
     ]}>
       <label>
         Operation:

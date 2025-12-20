@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
 :root {
-  --vs-primary: #7c3aed;      /* Deep Purple */
-  --vs-blue: #2563eb;         /* Electric Blue */
+  --vs-primary: #7c3aed;
+  --vs-blue: #2563eb;
   --vs-text: #F3F4F6;
   --vs-text-dim: #9CA3AF;
   --vs-glass-border: rgba(255, 255, 255, 0.08);
@@ -10,14 +10,14 @@
 
 body {
   margin: 0;
-  font-family: 'Montserrat', sans-serif; /* Global Font */
-  background-color: #020410; /* Deepest Void Black */
+  font-family: 'Montserrat', sans-serif;
+  background-color: #020410;
   color: var(--vs-text);
-  overflow: hidden; 
+  overflow: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
-/* THE NEBULA BACKGROUND GLOW */
+/* BACKGROUND GLOW */
 body::before {
   content: '';
   position: absolute;
@@ -25,18 +25,20 @@ body::before {
   height: 140vw;
   top: -50%;
   left: -20%;
-  background: radial-gradient(circle, rgba(82, 7, 212, 0.499) 0%, rgba(0,0,0,0) 60%);
+  background: radial-gradient(circle, rgba(8, 107, 255, 0.499) 0%, rgba(0, 0, 0, 0) 60%);
   filter: blur(100px);
   z-index: -1;
   pointer-events: none;
 }
 
-/* INPUTS: Glass Pills */
-input, select, textarea {
+/* INPUTS */
+input,
+select,
+textarea {
   background-color: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--vs-glass-border);
   color: #fff;
-  border-radius: 12px; /* Rounded Pills */
+  border-radius: 12px;
   padding: 10px 14px;
   font-family: 'Montserrat', sans-serif;
   font-size: 12px;
@@ -47,36 +49,95 @@ input, select, textarea {
   margin-top: 6px;
 }
 
-input:focus, select:focus, textarea:focus {
+input:focus,
+select:focus,
+textarea:focus {
   border-color: #5182FF;
   background-color: rgba(255, 255, 255, 0.07);
   box-shadow: 0 0 0 2px rgba(81, 130, 255, 0.2);
   outline: none;
 }
 
+select option {
+  background-color: #0B0F19;
+  color: #fff;
+}
+
 /* REACT FLOW OVERRIDES */
 .react-flow__background circle {
   fill: #fff;
-  opacity: 0.15; /* Very subtle stars */
+  opacity: 0.15;
 }
 
-/* NODE OVERRIDES */
 .react-flow__node {
   border-radius: 16px;
-  border: none !important; 
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
-  
-  /* CRITICAL FIX: Only animate box-shadow. NEVER animate transform. */
-  transition: box-shadow 0.2s ease-in-out; 
+  border: 1px solid rgba(59, 130, 246, 0.4) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.6), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .react-flow__node:hover {
-  /* Removed translateY(-2px) to prevent layout jumping */
-  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.7);
+  border-color: #3B82F6 !important;
+  box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.4);
+  transform: translateY(-2px);
   z-index: 100;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 10px;
+}
+
+/* --- NEW: GLOBAL ANIMATIONS (Removed from JS) --- */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translate(-50%, 100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+/* Utility Classes */
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.toolbar-enter {
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

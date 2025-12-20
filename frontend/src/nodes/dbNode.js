@@ -7,13 +7,17 @@ export const DBNode = ({ id, data }) => {
     <BaseNode id={id} data={data} label="Database" icon={MdStorage} handles={[
       { type: 'source', position: Position.Right, id: 'data' }
     ]}>
-      <label>
+      <label style={{ display: 'block', marginBottom: '10px' }}>
         DB Name:
         <input type="text" placeholder="my_postgres_db" />
       </label>
-      <label style={{ marginTop: '10px', display: 'block' }}>
-        <input type="checkbox" /> Read-only
-      </label>
+
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+          <input type="checkbox" style={{ width: 'auto', marginRight: '5px' }} />
+          Read-only
+        </label>
+      </div>
     </BaseNode>
   );
 }
