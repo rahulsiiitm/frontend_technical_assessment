@@ -1,3 +1,6 @@
+import os
+import asyncio
+import httpx
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List, Dict, Any
@@ -8,7 +11,7 @@ app = FastAPI()
 # Enable CORS for frontend communication
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -70,3 +73,23 @@ def check_is_dag(nodes, edges):
                 return False # Cycle found, so NOT a DAG
                 
     return True # No cycles found, IS a DAG
+
+# --- NEW: SELF-PING LOGIC FOR RENDER ---
+@app.on_event("startup")
+async def startup_event():
+    # Only run this if we are deployed on Render (checked via environment variable)
+    url = os.getenv("RENDER_EXTERNAL_URL")
+    if url:
+        print(f"🌍 Starting self-ping for {url}")
+        asyncio.create_task(keep_alive(url))
+
+async def keep_alive(url):
+    """Pings the server every 10 minutes to prevent sleep."""
+    async with httpx.AsyncClient() as client:
+        while True:
+            await asyncio.sleep(600)  # Ping every 10 minutes
+            try:
+                response = await client.get(url)
+                print(f"✅ Pinged {url} - Status: {response.status_code}")
+            except Exception as e:
+                print(f"❌ Ping failed: {e}")
