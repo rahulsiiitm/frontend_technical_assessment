@@ -9,6 +9,8 @@ A full-stack Pipeline Builder application that allows users to visually design, 
 
 This application serves as a "No-Code" interface for building LLM pipelines. Users can drag nodes onto a canvas, connect them to define logic, and submit the pipeline to the backend to ensure it is a valid **Directed Acyclic Graph (DAG)**.
 
+![Preview](<Recording 2025-12-23 203207.gif>)
+
 ### Key Features
 - **Visual Pipeline Builder:** Drag-and-drop interface using React Flow.
 - **9 Custom Node Types:**
