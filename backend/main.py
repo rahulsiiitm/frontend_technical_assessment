@@ -75,21 +75,21 @@ def check_is_dag(nodes, edges):
     return True # No cycles found, IS a DAG
 
 # --- NEW: SELF-PING LOGIC FOR RENDER ---
-@app.on_event("startup")
-async def startup_event():
-    # Only run this if we are deployed on Render (checked via environment variable)
-    url = os.getenv("RENDER_EXTERNAL_URL")
-    if url:
-        print(f"🌍 Starting self-ping for {url}")
-        asyncio.create_task(keep_alive(url))
+# @app.on_event("startup")
+# async def startup_event():
+#     # Only run this if we are deployed on Render (checked via environment variable)
+#     url = os.getenv("RENDER_EXTERNAL_URL")
+#     if url:
+#         print(f"🌍 Starting self-ping for {url}")
+#         asyncio.create_task(keep_alive(url))
 
-async def keep_alive(url):
-    """Pings the server every 10 minutes to prevent sleep."""
-    async with httpx.AsyncClient() as client:
-        while True:
-            await asyncio.sleep(600)  # Ping every 10 minutes
-            try:
-                response = await client.get(url)
-                print(f"✅ Pinged {url} - Status: {response.status_code}")
-            except Exception as e:
-                print(f"❌ Ping failed: {e}")
+# async def keep_alive(url):
+#     """Pings the server every 10 minutes to prevent sleep."""
+#     async with httpx.AsyncClient() as client:
+#         while True:
+#             await asyncio.sleep(600)  # Ping every 10 minutes
+#             try:
+#                 response = await client.get(url)
+#                 print(f"✅ Pinged {url} - Status: {response.status_code}")
+#             except Exception as e:
+#                 print(f"❌ Ping failed: {e}")
